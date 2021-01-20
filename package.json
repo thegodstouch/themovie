@@ -1,0 +1,22 @@
+{
+  "name": "themovie",
+  "version": "1.0.0",
+  "description": "This is the backend for Movie Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegodstouch/themovie.git"
+  },
+  "keywords": [
+    "movie"
+  ],
+  "author": "Eric",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegodstouch/themovie/issues"
+  },
+  "homepage": "https://github.com/thegodstouch/themovie#readme"
+}
