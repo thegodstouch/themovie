@@ -1,4 +1,4 @@
-import { getMovie, addNewMovie, getMovieById } from '../controllers/apiController'
+import { getMovie, addNewMovie, getMovieById, updateMovie, deleteMovie } from '../controllers/apiController'
 const apis = (app) => {
     // defines '/movie' as a RESTful API endpoint, which supports GET, POST on this endpoint.
     app.route('/movie') 
@@ -12,12 +12,8 @@ const apis = (app) => {
 
     app.route('/movie/:movieId')
     .get(getMovieById)
-    .put((req, res) => {
-        res.send(`PUT /movieId request successful!`)
-    })
-    .delete((req, res) => {
-        res.send(`DELETE /movieId request successful!`)
-    });
+    .put(updateMovie)
+    .delete(deleteMovie);
 }
 
 export default apis;

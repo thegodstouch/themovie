@@ -33,3 +33,23 @@ export const getMovieById = (req, res) => {
         }
     })
 }
+
+export const updateMovie = (req, res) => {
+    Movies.findOneAndUpdate({_id: req.params.movieId}, req.body, { new: true, useFindAndModify: false}, (err, movie) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(movie);
+        }
+    })
+}
+
+export const deleteMovie = (req, res) => {
+    Movies.remove({_id: req.params.movieId}, (err, movie) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json({message: 'Movie has been removed'});
+        }
+    })
+}
