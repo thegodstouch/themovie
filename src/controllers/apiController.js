@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { MovieSchema } from '../models/movieModel';
+import google from 'google-finance-data';
 
 const Movies = mongoose.model('Movies', MovieSchema);
 
@@ -53,3 +54,14 @@ export const deleteMovie = (req, res) => {
         }
     })
 }
+
+export const getStockById = (req, res) => {
+    google.getSymbol(req.params.stockId)
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.send(err);
+    })
+}
+
