@@ -1,4 +1,4 @@
-import { getMovie, addNewMovie, getMovieById, updateMovie, deleteMovie, getStockById } from '../controllers/apiController'
+import { getMovie, addNewMovie, getMovieById, updateMovie, deleteMovie, getStockById, addToPortfolio, addUserByEmail } from '../controllers/apiController'
 const apis = (app) => {
     // defines '/movie' as a RESTful API endpoint, which supports GET, POST on this endpoint.
     app.route('/movie') 
@@ -16,7 +16,10 @@ const apis = (app) => {
     .delete(deleteMovie);
 
     app.route('/stock/:stockId')
-    .get(getStockById)
+    .get(getStockById);
+
+    app.route('/user')
+    .post(addUserByEmail);
 }
 
 export default apis;

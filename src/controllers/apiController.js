@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
-import { MovieSchema } from '../models/movieModel';
+import { MovieSchema, UserSchema } from '../models/movieModel';
 import google from 'google-finance-data';
 
 const Movies = mongoose.model('Movies', MovieSchema);
+
+const User = mongoose.model('User', UserSchema);
 
 export const getMovie = (req, res) => {
     Movies.find({}, (err, movies) => {
@@ -62,6 +64,40 @@ export const getStockById = (req, res) => {
     })
     .catch(err => {
         res.send(err);
+    })
+}
+
+export const addUserByEmail = (req, res) => {
+    let newUser = new User(req.body);
+    console.log('inin');
+    console.log(newUser);
+    newUser.save((err, user) => {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(user);
+        }
+    });
+}
+
+export const addToPortfolio = (req, res) => {
+    console.log(req.body.email);
+    console.log(req.body.stock);
+    console.log(req.body.shares);
+    User.findOne({email: req.body.email}, function(error, doc){
+        if (error) {
+            res.send(err);
+        }
+        if (doc.portfolio.get(req.body.stock)) {
+            doc.portfolio.set(req.body.stock, Number(req.body.shares) + doc.portfolio.get(req.body.stock));
+        } else {
+            doc.portfolio.set(req.body.stock, Number(req.body.shares));
+        }
+        
+        //doc.markModified('portfolio');
+        doc.save();
+        res.send(doc);
     })
 }
 

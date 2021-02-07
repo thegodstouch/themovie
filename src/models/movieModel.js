@@ -26,3 +26,18 @@ export const MovieSchema = new Schema({
         default: Date.now
     }
 });
+
+export const UserSchema = new Schema({
+    email: {
+        type: String,
+    },
+    watchList: {
+        type: [String],
+        default: [],
+    },
+    portfolio: {
+        type: Map,
+        of: Number,
+        default: {},
+    }
+});
